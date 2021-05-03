@@ -5,7 +5,7 @@
 ## Nim   : 311910445
  ## UTS PENGOLAHAN CITRA MEMBUAT APLIKASI GUI
  
- ## - HISTOGRAM IMAGE
+ # HISTOGRAM IMAGE
  
  1. pertama kita buka aplikasi matlab kemudian tulislah "guide" pada bagian 'Command Window' kemudian ENTER, kemudian klik browser untuk menyimpan folder lalu klik OK
 ![1](https://user-images.githubusercontent.com/56240533/116882948-3c5c2e00-ac4f-11eb-9172-1bc088c5f1e6.png)
@@ -25,169 +25,28 @@ _contoh source kodenya
 - berikut hasilnya
 ![hasilnya](https://user-images.githubusercontent.com/56240533/116884859-6ca4cc00-ac51-11eb-83e3-922bdf35f106.png)
 
-- SOURCE KODE "HISTOGRAM IMAGE"
+# CITRA DAN HISTOGRAM
 
-function varargout = lailah(varargin)
-% LAILAH MATLAB code for lailah.fig
-%      LAILAH, by itself, creates a new LAILAH or raises the existing
-%      singleton*.
-%
-%      H = LAILAH returns the handle to a new LAILAH or the handle to
-%      the existing singleton*.
-%
-%      LAILAH('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in LAILAH.M with the given input arguments.
-%
-%      LAILAH('Property','Value',...) creates a new LAILAH or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before lailah_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to lailah_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help lailah
-
-% Last Modified by GUIDE v2.5 02-May-2021 20:03:13
-
-% Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
-gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @lailah_OpeningFcn, ...
-                   'gui_OutputFcn',  @lailah_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
-if nargin && ischar(varargin{1})
-    gui_State.gui_Callback = str2func(varargin{1});
-end
-
-if nargout
-    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
-else
-    gui_mainfcn(gui_State, varargin{:});
-end
-% End initialization code - DO NOT EDIT
-
-
-% --- Executes just before lailah is made visible.
-function lailah_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to lailah (see VARARGIN)
-
-% Choose default command line output for lailah
-handles.output = hObject;
-
-% Update handles structure
-guidata(hObject, handles);
-
-% UIWAIT makes lailah wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
-
-
-% --- Outputs from this function are returned to the command line.
-function varargout = lailah_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Get default command line output from handles structure
-varargout{1} = handles.output;
-
-
-% --- Executes on button press in open_image.
-function open_image_Callback(hObject, eventdata, handles)
-[namafile, formatfile] = uigetfile('*.png; *.bmp; *.jpg', 'membuka gambar'); %memilih gambar
-if formatfile == 0
-    return;
-end
-image = imread([formatfile, namafile]);
-guidata(hObject, handles);
-axes(handles.axes1); 
-imshow(image); 
-
-gambarhist = fullfile(formatfile, namafile);
-set(handles.path_image,'String', gambarhist);
-
-red = image(:,:,1);
-green = image(:,:,2);
-blue = image(:,:,3);
-r = imhist(red);
-g = imhist(green);
-b = imhist(blue);
-x = 0:255;
-set(handles.uitable1,'data',r);
-set(handles.uitable2,'data',g);
-set(handles.uitable3,'data',b);
-
-axes(handles.axes2)
-plot(x,r,'r-')
-
-axes(handles.axes3)
-plot(x,g,'g-')
-
-axes(handles.axes4)
-plot(x,b,'b-')
-[namafile, formatfile] = uigetfile('*.png; *.bmp; *.jpg', 'membuka gambar'); %memilih gambar
-if formatfile == 0
-    return;
-end
-image = imread([formatfile, namafile]);
-guidata(hObject, handles);
-axes(handles.axes1); 
-imshow(image); 
-
-gambarhist = fullfile(formatfile, namafile);
-set(handles.path_image,'String', gambarhist);
-red = image(:,:,1);
-green = image(:,:,2);
-blue = image(:,:,3);
-r = imhist(red);
-g = imhist(green);
-b = imhist(blue);
-x = 0:255;
-set(handles.uitable1,'data',r);
-set(handles.uitable2,'data',g);
-set(handles.uitable3,'data',b);
-
-axes(handles.axes2)
-plot(x,r,'r-')
-
-axes(handles.axes3)
-plot(x,g,'g-')
-
-axes(handles.axes4)
-plot(x,b,'b-')
-% hObject    handle to open_image (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+1.pertama kita buka aplikasi matlab kemudian tulislah "guide" pada bagian 'Command Window' kemudian ENTER, kemudian klik browser untuk menyimpan folder lalu klik OK, setelah klik browser untuk menyimpan filenya.
+![a](https://user-images.githubusercontent.com/56240533/116888021-2f423d80-ac55-11eb-9900-cd2d62b5d5e5.png)
+2. kemudian klik 'push button' pada RGB.fig lalu klik kanan untuk menampilkan insepctor dan merubah STRING dari push button ke browse image.
+![b](https://user-images.githubusercontent.com/56240533/116888633-e5a62280-ac55-11eb-8c95-d9f07e6d9026.png)
+3. lalu buatlah panel dengan mengganti 'STRING' dengan nama 'RGB Channel'
+![c](https://user-images.githubusercontent.com/56240533/116888759-09696880-ac56-11eb-9575-0d2dc529ea04.png)
+4. setelah itu buatlah 4 'radio button didalam panel' dengan berurutan serta ganti 'STRING' dengan urutan RED,GREEN,BLUE,GRAYSCALE
+![d](https://user-images.githubusercontent.com/56240533/116889027-53eae500-ac56-11eb-8974-61108107d587.png)
+5. lalu buatlah 'lisbox' didalam panel grayscale dengan nama 'Gray'
+![e](https://user-images.githubusercontent.com/56240533/116889371-aaf0ba00-ac56-11eb-94a7-b712d30f082d.png)
+6. selanjutnya, tambahkan 'slider' didalam panel histogram, lalu buatlah edit text dibawah slider yang terakhir tambahkan 2 'axes' untuk memerikan nilai citra dan Histogramnya.
+![f](https://user-images.githubusercontent.com/56240533/116889637-fdca7180-ac56-11eb-969d-9cb4b897848f.png)
+- setelah semuanya sudah dibuat 'SAVE' terlebih dahulu, lalu tulislah source codenya, setelah tertulis kemudian klik RUN untuk melihat hasilnya.
+![merah](https://user-images.githubusercontent.com/56240533/116889814-3407f100-ac57-11eb-92c0-91e96eac85c7.png)
+![green](https://user-images.githubusercontent.com/56240533/116889822-35d1b480-ac57-11eb-9eb1-53316fbc1f4c.png)
+![blue](https://user-images.githubusercontent.com/56240533/116889842-3bc79580-ac57-11eb-9c5b-50ff201884d6.png)
+![grayscale dan binary](https://user-images.githubusercontent.com/56240533/116889875-43873a00-ac57-11eb-812b-193a7e90bc1e.png)
+![rgb image dan histogram](https://user-images.githubusercontent.com/56240533/116889890-47b35780-ac57-11eb-94bb-9db1d523bd65.png)
 
 
 
-function path_image_Callback(hObject, eventdata, handles)
-% hObject    handle to path_image (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of path_image as text
-%        str2double(get(hObject,'String')) returns contents of path_image as a double
 
 
-% --- Executes during object creation, after setting all properties.
-function path_image_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to path_image (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
